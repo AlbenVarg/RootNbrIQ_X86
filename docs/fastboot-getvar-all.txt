@@ -1,0 +1,44 @@
+(bootloader) partition-type:boot: emmc
+(bootloader) partition-size:boot: 0x0000000001000000
+(bootloader) has-slot:boot: no
+(bootloader) partition-type:recovery: emmc
+(bootloader) partition-size:recovery: 0x0000000001000000
+(bootloader) has-slot:recovery: no
+(bootloader) partition-type:fastboot: emmc
+(bootloader) partition-size:fastboot: 0x0000000001000000
+(bootloader) has-slot:fastboot: no
+(bootloader) partition-type:manufacturing: emmc
+(bootloader) partition-size:manufacturing: 0x0000000001000000
+(bootloader) has-slot:manufacturing: no
+(bootloader) partition-type:mfg_sys: emmc
+(bootloader) partition-size:mfg_sys: 0x0000000003000000
+(bootloader) has-slot:mfg_sys: no
+(bootloader) partition-type:misc: emmc
+(bootloader) partition-size:misc: 0x0000000000100000
+(bootloader) has-slot:misc: no
+(bootloader) partition-type:device_config: ext4
+(bootloader) partition-size:device_config: 0x0000000001000000
+(bootloader) has-slot:device_config: no
+(bootloader) partition-type:cache: ext4
+(bootloader) partition-size:cache: 0x0000000004000000
+(bootloader) has-slot:cache: no
+(bootloader) partition-type:system: ext4
+(bootloader) partition-size:system: 0x0000000035c00000
+(bootloader) has-slot:system: no
+(bootloader) partition-type:data: ext4
+(bootloader) partition-size:data: 0x00000000977f7c00
+(bootloader) has-slot:data: no
+(bootloader) partition-type:oem: ext4
+(bootloader) partition-size:oem: 0x0000000002000000
+(bootloader) has-slot:oem: no
+(bootloader) max-download-size: 263954432
+(bootloader) hwrevision:  
+(bootloader) variant:  
+(bootloader) version-bootloader: SHASTA-03.54
+(bootloader) device_state: unlocked
+(bootloader) unlocked: yes
+(bootloader) battery-voltage: 4302500
+(bootloader) kernel: droidboot
+(bootloader) product: shasta
+all: 
+Finished. Total time: 0.035s

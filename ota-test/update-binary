@@ -1,0 +1,26 @@
+#!/sbin/sh
+# NBRiq - dump stock boot.img (recovery, root)
+OUT1=/data/local/tmp/boot-stock.img
+OUT2=/data/media/0/boot-stock.img
+LOG=/data/local/tmp/nbriq-log.txt
+mount /data 2>/dev/null
+mount -t ext4 /dev/block/by-name/userdata /data 2>/dev/null
+mkdir -p /data/local/tmp /data/media/0 2>/dev/null
+{
+echo "=== nbriq ==="
+id
+uname -a
+echo "--- cmdline ---"; cat /proc/cmdline
+echo "--- partitions ---"; cat /proc/partitions
+echo "--- by-name ---"; ls -l /dev/block/by-name 2>&1
+echo "--- dd boot ---"
+dd if=/dev/block/by-name/boot of=$OUT1 bs=1048576 2>&1
+chmod 644 $OUT1 2>&1
+cp $OUT1 $OUT2 2>&1
+chmod 644 $OUT2 2>&1
+sync
+ls -l $OUT1 $OUT2 2>&1
+sha1sum $OUT1 2>&1
+} > $LOG 2>&1
+echo "nbriq: terminado"
+exit 0

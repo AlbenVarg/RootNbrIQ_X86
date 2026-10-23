@@ -1,0 +1,55 @@
+# --- binarios pesados que NO van al repo (siguen en tu disco) ---
+# OTA e imagenes del firmware
+ota/*.zip
+ota/*.img
+ota/*.bin
+ota/*.log
+ota/magiskboot
+ota/unpacked/
+ota/unpacked-stock/
+ota/pk-test/
+ota/patch/
+ota/oct/
+ota/__pycache__/
+mpatch/work/*.img
+mpatch/work/kernel
+mpatch/work/second
+mpatch/work/ramdisk.cpio
+mpatch/work/ramdisk.cpio.orig
+mpatch/work/magiskboot
+mpatch/work/magiskinit
+mpatch/work/magisk
+mpatch/work/magisk.xz
+mpatch/work/init-ld
+mpatch/work/init-ld.xz
+mpatch/work/stub.xz
+
+# APKs y binarios de Magisk (se sacan del APK oficial)
+magisk/*.apk
+magisk/x86/
+magisk/assets/*
+!magisk/assets/*.sh
+
+# claves privadas de firma de prueba: solo se sube el certificado publico
+ota-test/testkey.pk8
+ota-test/testkey.key.pem
+ota-test/testkey.p12
+
+# herramienta de terceros clonada (google-ota-prober): se clona, no se versiona
+ota-prober/
+
+# Android / Gradle
+wearapp/**/build/
+wearapp/.gradle/
+wearapp/local.properties
+*.apk
+*.ap_
+*.dex
+*.class
+
+# --- ruido del sistema ---
+.DS_Store
+**/.DS_Store
+*.log
+__pycache__/
+*.pyc

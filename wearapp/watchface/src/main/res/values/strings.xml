@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NBRiq Esferas</string>
+    <string name="watch_face_name">Pixel NBRiq</string>
+    <string name="watch_face_description">Esfera estilo Pixel Watch: hora grande, fecha, anillo de batería y una complicación configurable.</string>
+    <string name="complication_label">Batería NBRiq</string>
+    <string name="complication_short_title">BAT</string>
+</resources>
