@@ -237,6 +237,26 @@ backup-sdcard/            volcado de /sdcard antes del wipe
 wearapp/                  proyecto Gradle de la esfera propia
 ```
 
+### Imágenes de boot (sí están en el repo)
+
+Las 6 imágenes **únicas** de la partición `boot` (16 MiB), con sus sha1 en
+[`ota/SHA1SUMS`](ota/SHA1SUMS) para poder verificar la descarga:
+
+| fichero | tamaño | sha1 | para qué |
+|---|---|---|---|
+| `ota/boot-stock.img` | 9.007.104 B | `99a5980288bb…` | **stock** de fábrica → rescate / volver atrás |
+| `ota/boot-magisk.img` | 9.236.480 B | `b4251b27aa7b…` | **Magisk v30.7 parcheado** → el que está flasheado |
+| `ota/boot-root-adb.img` | 9.007.104 B | `7171026195ea…` | rescate: `ro.secure=0`, `ro.debuggable=1`, `ro.adb.secure=0` |
+| `ota/boot-magisk-slim.img` | 9.007.104 B | `7c30c5d1d19e…` | variante "slim" ❌ **no arranca** (sin `.backup/init.xz`); se guarda como evidencia |
+| `ota/boot-jul.img` | 9.007.104 B | `bed74aea9586…` | stock del OTA incremental de julio (versión anterior) |
+| `ota/boot.img` | 9.154.560 B | `cda5d71548c9…` | boot original tal cual sale del OTA completo (no se flasheó) |
+
+```bash
+cd ota && shasum -a 1 -c SHA1SUMS     # comprobar que están intactas
+```
+
+Son ~54 MB de repo. Si algún día quieres meter más imágenes grandes, plantéate Git LFS.
+
 ### Qué NO está en git (y por qué)
 
 Imágenes, APKs y binarios pesados están en `.gitignore` porque superan de largo el tamaño
@@ -245,7 +265,7 @@ razonable de un repo (los ficheros siguen en tu disco):
 | ruta | tamaño | nota |
 |---|---|---|
 | `ota/*.zip` | 415 MB + 103 MB + 54 MB | OTA completos e incrementales del firmware |
-| `ota/*.img`, `mpatch/work/*.img` | ~9 MB cada uno | boot stock/parcheado; recuperables parcheando el stock |
+| `mpatch/work/*.img`, `ota/roundtrip.img` | ~9 MB cada uno | copias de trabajo del parcheo y la prueba de ida y vuelta: son idénticas a las de `ota/` |
 | `magisk/*.apk` | 11 MB + 12 MB | Magisk oficial y Root Checker |
 | `magisk/x86/*.so`, `magisk/assets/*.jar` | 3.6 MB + 1 MB | binarios del APK de Magisk |
 | `ota-prober/` | 21 MB | clon de https://github.com/tangalbert919/google-ota-prober |

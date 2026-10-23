@@ -1,7 +1,14 @@
 # --- binarios pesados que NO van al repo (siguen en tu disco) ---
-# OTA e imagenes del firmware
-ota/*.zip
+# Imagenes de boot: se suben solo las 6 unicas de ota/ (ver ota/SHA1SUMS).
+# Las copias de trabajo de mpatch/ y los .img de prueba siguen fuera de git.
 ota/*.img
+!ota/boot.img
+!ota/boot-stock.img
+!ota/boot-magisk.img
+!ota/boot-magisk-slim.img
+!ota/boot-root-adb.img
+!ota/boot-jul.img
+ota/*.zip
 ota/*.bin
 ota/*.log
 ota/magiskboot

@@ -1,6 +1,10 @@
 #!/bin/sh
 # Replica la secuencia de assets/boot_patch.sh de Magisk v30.7 para ABI x86 (32-bit).
 # Se ejecuta dentro de un contenedor linux/386 (magiskboot es un ELF bionic estatico).
+#
+# Antes de ejecutarlo hace falta la imagen stock en este directorio (no se versiona
+# dos veces; en ota/ esta la buena):
+#     cp ../ota/boot-stock.img .
 set -e
 cd /w
 
