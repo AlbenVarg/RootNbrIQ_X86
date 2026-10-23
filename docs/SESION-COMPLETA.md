@@ -2,7 +2,7 @@
 
 > ℹ️ **Serial anonimizado.** El serial real del reloj se ha sustituido por uno aleatorio
 > (`BIB7UX7D9PBGSE`) en toda esta documentación, y el reloj reporta ese mismo valor desde
-> entonces (ver [`../README.md`](../README.md#7-serial-del-reloj-privacidad) y
+> entonces (ver [`../README-TECNICO.md`](../README-TECNICO.md#7-serial-del-reloj-privacidad) y
 > `scripts/random-serial.sh`). La IP `10.0.0.132` sí es la real de la red local.
 
 Notas de la sesión de **OEM unlock** por `fastboot` (22/10/2026).
