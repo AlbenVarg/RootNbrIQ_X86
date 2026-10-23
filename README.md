@@ -6,6 +6,15 @@ Wear OS 2.0 / **Android 7.1.1 (API 25)**, bootloader Intel `SHASTA-03.54`.
 Todo lo de este repo se hizo y se verificó **sobre el reloj real** (22-23/oct/2026).
 No hay teoría: cada paso tiene el comando y la salida que lo confirma.
 
+> ## ⚠️ Aviso de responsabilidad
+> Desbloquear el bootloader **borra el reloj**, y flashear `boot` o tocar SELinux puede
+> dejarlo **inservible (brick)** y **anula la garantía**. Todo esto lo hice en mi propio
+> dispositivo y lo comparto **sin garantía de ningún tipo**: ni el autor ni los
+> colaboradores respondemos de daños, pérdida de datos ni relojes bloqueados.
+> **Lo usas bajo tu propio riesgo.**
+> Lee **[DISCLAIMER.md](DISCLAIMER.md)** (qué riesgos hay, qué puede salir mal y cómo
+> reducirlo) antes de ejecutar nada.
+
 > El otro proyecto de la misma sesión (Spotify en el reloj) vive aparte:
 > [Sp0tiold-X86](https://github.com/AlbenVarg/Sp0tiold-X86).
 
@@ -24,6 +33,40 @@ No hay teoría: cada paso tiene el comando y la salida que lo confirma.
 | bootloader | `SHASTA-03.54` (droidboot Intel, **no** Qualcomm; sin particiones A/B) |
 | RAM | 455 MB (`MemTotal`), 110 MB de swap |
 | serial | `BIB7UX7D9PBGSE` (USB) / `10.0.0.132:5555` (Wi-Fi) — ver [Serial del reloj](#serial-del-reloj-privacidad) |
+
+---
+
+## Capturas (Magisk y root)
+
+Tomadas del reloj real (400×400), con `adb exec-out screencap`. Ficheros en [`docs/img/`](docs/img/).
+
+| Magisk instalado (30.7) | Pestaña *Superuser* | Petición de root |
+|---|---|---|
+| ![Magisk](docs/img/01-magisk-app.png) | ![Superuser](docs/img/02-magisk-superuser.png) | ![Petición](docs/img/03-superuser-request.png) |
+
+| Root Checker: estado | |
+|---|---|
+| ![Root Checker](docs/img/04-rootchecker-estado.png) | *"Verify Root Status — Device: NB RunIQ — Android 7.1.1"* |
+
+Notas de las capturas (honestas):
+
+- La primera es la app de **Magisk v30.7** en el reloj. Sale el cartel *"Download Magisk ONLY
+  from the official GitHub page"*: es el **falso negativo de la UI Wear** del que habla la
+  documentación — el backend (`magiskd`) sí está instalado en la partición `boot` y `su` funciona.
+- La segunda es la lista de **políticas concedidas** (la app que aparece arriba con el
+  interruptor activado es la que tenía root en ese momento).
+- La tercera es el diálogo **Superuser request** del propio Magisk: *"Grants full access to
+  your device"*.
+- La cuarta es la app de terceros **Root Checker Basic** comprobando el root.
+
+La prueba "dura" no es una captura, es esto:
+
+```console
+$ adb shell "su -c 'magisk -v; magisk --path; id'"
+30.7:MAGISK:R
+/sbin
+uid=0(root) gid=0(root) groups=0(root) context=u:r:magisk:s0
+```
 
 ---
 
@@ -222,9 +265,11 @@ fastboot boot  ota/boot-root-adb.img       # adb root en RAM, sin escribir nada
 ## Estructura del repo
 
 ```
+DISCLAIMER.md             aviso de responsabilidad (brick, garantia, datos) — leer antes
 docs/
   SESION-COMPLETA.md      bitácora íntegra de la sesión (unlock, Magisk, debloat, batería, esfera)
   SELINUX.md              el dominio shell, magiskpolicy y la migración de datos de una app
+  img/                    capturas del reloj: Magisk, Superuser y Root Checker
   fastboot-getvar-all.txt salida cruda de `fastboot getvar all`
 scripts/                  los 7 scripts de arriba
 debloat/                  listas de paquetes antes/después
@@ -299,3 +344,6 @@ Si necesitas las imágenes: descarga el OTA y parchea con `mpatch/work/run_patch
 Desbloquear el bootloader **borra el reloj** y anula la garantía; flashear `boot` mal puede
 dejarlo sin arrancar (para eso están `boot-stock.img` y el modo fastboot). Todo lo de este
 repo se aplicó a un dispositivo propio, con el firmware `NWD1.171016.002`.
+
+**El detalle completo de riesgos, y de qué NO me hago responsable, está en
+[`DISCLAIMER.md`](DISCLAIMER.md). Léelo antes de empezar.**
