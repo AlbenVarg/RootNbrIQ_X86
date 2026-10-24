@@ -9,7 +9,7 @@ sin ser ingeniero.
 
 ---
 
-> ## ⚠️ ANTES DE EMPEZAR: esto puede romper tu reloj
+> ## ⚠️ ANTES DE EMPEZAR: esto puede brikear tu reloj
 > - El desbloqueo del bootloader **borra TODO** el reloj (vuelve a estado de fábrica).
 > - Si flasheas una imagen que no es la de tu versión, el reloj **no arranca**.
 > - Meter root **anula la garantía** y baja la seguridad del sistema.
